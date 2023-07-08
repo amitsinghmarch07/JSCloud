@@ -1,0 +1,30 @@
+div#container {
+    border: 2px solid black;
+    display: inline-block;
+    text-align: center;
+    padding: 10px;
+    margin: auto;
+    box-shadow: 5px 5px 5px lightgray;
+}
+
+ui {
+    text-align: left;
+    padding: 10px;
+    list-style: none;
+}
+
+/* input:checked+label{
+text-decoration: line-through;
+
+} */
+label+button {
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 10px;
+
+}
+
+/* input:empty+button {
+    pointer-events: none;
+} */

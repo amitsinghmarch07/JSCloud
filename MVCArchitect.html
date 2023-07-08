@@ -1,0 +1,49 @@
+//~!Model
+class Todo {
+static lastId = 0;
+Constructor(text,completed=false) {
+this.id = ++Todo.lastId;
+this.text = text;
+this.completed = completed;
+}
+}
+//~* Controller (C)
+class TodoComponent {
+
+todoList = []; //> will hold all todos created by the user
+constructor(){
+//~% View (V)
+const template = `
+<div id="container">
+    <h1>Todo App</h1>
+    <input id="todos-input" />
+    <button id="add-button">Add</button>
+    <ul id="todos-ul"></ul>
+</div>
+`;
+
+
+const appTodo = document.querySelector("app-todo");
+appTodo.insertAdjacentHTML("beforeend", template);
+
+const todoUL = document.querySelector("#todo-ul");
+const addButton = document.querySelector("#add-button");
+const todoInput = document.querySelector("#todo-input");
+
+addButton.addEventListener("click", () => {
+
+const todo = new Todo(todoInput.value, true);
+this.todoList.push(todo);
+console.log(this.todoList);
+
+todoUL.insertAdjacentHTML("afterbegin", `
+<li>
+    <input type="checkbox" ${todo.completed?"checked":""} />
+    <label>${<todo.text}< /label>
+            <button>x</button>
+</li>
+`);
+todoInput.value="" ;
+});
+}
+}

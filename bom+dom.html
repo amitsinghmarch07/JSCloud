@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Using DOM</title>
+    <script>
+        function changeTEXT() {
+            let header = document.getElementById("header");
+            header.innerHTML = "A very warm welcome to DOM API";
+        }
+    </script>
+</head>
+<body>
+    !----login page -----
+    Welcome to login 
+    <p>Username</p>
+    <input id="name" type="text"/>
+    <p>Password</p>
+    <input id="pass" type="password"/>
+</p>
+<button>Submit</button>
+<button>Reset</button>
+    <h1 id="header">Header</h1>
+    <button onclick="changeTEXT()">change header</button>
+</body>
+</html>

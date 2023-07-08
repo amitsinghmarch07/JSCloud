@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX</title>
+</head>
+
+<body>
+    <input id="input" />
+    <button onclick="makecall()">AJAX</button>
+    <script>
+        function makecall() {
+            const Xhr = new XMLHttpRequest();
+            Xhr.onreadystatechange = mycallback;
+            Xhr.open("GET", "http://localhost:12000", true);
+            Xhr.send();
+            console.log("i am continuing.....");
+
+        }
+        function mycallback(event) {
+            console.log(event.target.response);
+
+            if (event.target.readyState == 4) {
+                document.querySelector("input").value = event.target.response;
+            }
+        }
+    </script>
+
+</body>
+
+</html>

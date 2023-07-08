@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>asynchronous</title>
+</head>
+
+<script>
+    function longRun(ms){
+        const start = new Date;
+        while (new Date-start<ms)
+        //do nothing
+        ;
+    }
+    function frozen(){
+    console.log("frozen started");
+    longRun(10000);
+    console.log("frozen ended");
+    }
+    function notFrozen(){
+        console.log("notFrozen strted");
+        setTimeout(longRun, 5000, 10000);
+        console.log("notFrozen ended");
+    }
+</script>
+<body>
+    <input type="number"/>
+    <button onclick="longRun(10000)">Long run</button>
+    <button onclick="frozen()">frozen</button>
+    <button onclick="notFrozen()">notFrozen</button>
+
+</body>
+</html>
