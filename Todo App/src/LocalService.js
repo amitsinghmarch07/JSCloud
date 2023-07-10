@@ -1,24 +1,28 @@
-import Todo from "./Todo.js";
-
-export default class LocalService {
-
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const Todo_js_1 = __importDefault(require("./Todo.js"));
+class LocalService {
     todoList = [];
     constructor() {
         // this.loadTodoList();
         console.log("local service");
     }
     addTodo(text, completed) {
-        const todo = new Todo(text, completed);
+        const todo = new Todo_js_1.default(text, completed);
         this.todoList.push(todo);
         this.saveTodoList();
         return todo;
     }
     getAllTodos() {
-        const dictionary = JSON.parse(localStorage.getItem("todo-list"));
-        if (dictionary == null) {
+        this.todoList = JSON.parse(localStorage.getItem("todo-list") ?? "[]");
+        if (this.todoList == null) {
             return [];
-        } else {
-            this.todoList = dictionary.map(element => new Todo(element["text"], element["completed"]))
+        }
+        else {
+            this.todoList = this.todoList.map(element => new Todo_js_1.default(element["text"], element["completed"]));
             return this.todoList;
         }
     }
@@ -32,7 +36,7 @@ export default class LocalService {
         this.saveTodoList();
     }
     deleteTodo(id) {
-        this.to = this.todoList.filter(elem => elem.id != id);
+        this.todoList = this.todoList.filter(elem => elem.id != id);
         this.saveTodoList();
     }
     saveTodoList() {
@@ -40,7 +44,8 @@ export default class LocalService {
     }
     loadTodoList() {
         this.todoList = JSON.parse(localStorage.getItem("todo-list") ?? "[]");
-        todo.lastID = this.todoList.at(-1)?.id ?? 0;
+        // todo.lastID = this.todoList.at(-1)?.id ?? 0;
         return this.todoList;
     }
 }
+exports.default = LocalService;
